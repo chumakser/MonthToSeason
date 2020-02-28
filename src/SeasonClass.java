@@ -5,21 +5,20 @@ import java.io.InputStreamReader;
 public class SeasonClass {
 
     public static void main(String args[]) throws IOException {
-
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader stream = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Please, enter the month:");
-        String input = br.readLine();
-        System.out.println(SeasonChooser(input));
+        String input = stream.readLine();
+        Season inputSeason = seasonChooser(input);
+        if (inputSeason != null){
+            System.out.println(inputSeason);
+        }
+        else {
+            System.out.println("There is not such month as //" + input + "// in seasons");
+        }
 
     }
 
-    private enum Season {
-
-        WINTER, SPRING, SUMMER, AUTUMN
-
-    }
-
-    public static Season SeasonChooser(String input) {
+    public static Season seasonChooser(String input) {
         Season season = null;
         switch (input) {
             case "December":
@@ -43,8 +42,11 @@ public class SeasonClass {
                 season = Season.AUTUMN;
                 break;
             default:
-                System.out.println("No this month");
         }
         return season;
+    }
+
+    private enum Season {
+        WINTER, SPRING, SUMMER, AUTUMN
     }
 }
